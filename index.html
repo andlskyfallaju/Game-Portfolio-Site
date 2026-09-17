@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pixel Room Portfolio // Interactive 2D Game</title>
-  <meta name="description" content="An interactive 2D pixel art portfolio game. Navigate a developer's room with WASD and click on bookshelf books to explore GitHub projects and code repositories.">
+  <title>Andile Makuyana /// 2D Pixel Portfolio</title>
+  <meta name="description"
+    content="An interactive 2D pixel art portfolio game. Navigate a developer's room with WASD and click on bookshelf books to explore GitHub projects and code repositories.">
   <link rel="icon" type="image/png" href="./assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&family=VT323&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- Ambient Backdrop Glow -->
   <div class="background-ambient"></div>
@@ -45,7 +50,8 @@
         <button id="toggle-night-btn" class="retro-btn" title="Toggle Day / Night ambient lighting">☀️ Day</button>
         <button id="toggle-crt-btn" class="retro-btn active" title="Toggle retro CRT scanlines effect">📺 CRT</button>
         <button id="toggle-sound-btn" class="retro-btn active" title="Toggle 8-bit sound effects">🔊 Sound</button>
-        <button id="toggle-music-btn" class="retro-btn active" title="Toggle cozy 8-bit background music">🎵 Music On</button>
+        <button id="toggle-music-btn" class="retro-btn active" title="Toggle cozy 8-bit background music">🎵 Music
+          On</button>
         <button id="toggle-fullscreen-btn" class="retro-btn" title="Toggle Fullscreen">⛶ Fullscreen</button>
         <button id="toggle-help-btn" class="retro-btn btn-highlight" title="Controls and guide">❓ Help</button>
       </nav>
@@ -82,7 +88,8 @@
         <!-- Cabinet Status Bezel Footer -->
         <div class="cabinet-footer">
           <div class="controls-hint">
-            <span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span>
+            <span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span
+              class="keycap">D</span>
             <span class="hint-text">WALK</span>
             <span class="separator">•</span>
             <span class="mouse-badge">🖱️ MOUSE</span>
@@ -110,7 +117,8 @@
               <h2 id="proj-title" class="modal-title">Project Title</h2>
             </div>
           </div>
-          <button class="modal-close-btn" aria-label="Close modal" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+          <button class="modal-close-btn" aria-label="Close modal" title="Press [E] or [Esc] to exit"><span
+              class="key-hint">[E]</span>&times;</button>
         </header>
 
         <!-- Shelf Visual Spine Selector -->
@@ -154,7 +162,10 @@
           </div>
           <div class="action-links">
             <a id="proj-github-link" href="#" target="_blank" rel="noopener noreferrer" class="modal-btn btn-primary">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
               View on GitHub
             </a>
             <a id="proj-demo-link" href="#" target="_blank" rel="noopener noreferrer" class="modal-btn btn-accent">
@@ -175,7 +186,8 @@
             <span class="dot dot-green"></span>
           </div>
           <h2 class="modal-title term-title">terminal@battlestation:~</h2>
-          <button class="modal-close-btn" aria-label="Close terminal" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+          <button class="modal-close-btn" aria-label="Close terminal" title="Press [E] or [Esc] to exit"><span
+              class="key-hint">[E]</span>&times;</button>
         </header>
 
         <div id="term-body" class="modal-body term-body">
@@ -185,7 +197,8 @@
         <footer class="modal-footer term-footer">
           <div class="term-input-row">
             <span class="term-prompt-sym">&gt;</span>
-            <input id="term-cli-input" type="text" placeholder="type 'help', 'skills', 'projects', 'github'..." autocomplete="off" spellcheck="false">
+            <input id="term-cli-input" type="text" placeholder="type 'help', 'skills', 'projects', 'github'..."
+              autocomplete="off" spellcheck="false">
           </div>
         </footer>
       </div>
@@ -199,7 +212,8 @@
             <span id="generic-modal-icon" class="dialog-icon">💡</span>
             <h2 id="generic-modal-title" class="modal-title">Interaction</h2>
           </div>
-          <button class="modal-close-btn" aria-label="Close dialog" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+          <button class="modal-close-btn" aria-label="Close dialog" title="Press [E] or [Esc] to exit"><span
+              class="key-hint">[E]</span>&times;</button>
         </header>
 
         <div class="modal-body generic-body">
@@ -224,7 +238,8 @@
               <h2 class="modal-title">Room Jukebox & Music Tracks</h2>
             </div>
           </div>
-          <button class="modal-close-btn" aria-label="Close music player" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+          <button class="modal-close-btn" aria-label="Close music player" title="Press [E] or [Esc] to exit"><span
+              class="key-hint">[E]</span>&times;</button>
         </header>
 
         <div class="modal-body music-body">
@@ -304,7 +319,8 @@
               <h2 class="modal-title">Credits & Attributions</h2>
             </div>
           </div>
-          <button class="modal-close-btn" aria-label="Close credits" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+          <button class="modal-close-btn" aria-label="Close credits" title="Press [E] or [Esc] to exit"><span
+              class="key-hint">[E]</span>&times;</button>
         </header>
 
         <div class="modal-body credits-body">
@@ -333,14 +349,16 @@
           <div class="credits-section">
             <h3 class="credits-heading">🎵 Music</h3>
             <div class="credits-card credits-music-note">
-              <p><em>Music credits are listed inside the 📻 Retro Boombox player (Author field).<br>All tracks used with permission or under free / CC licenses.</em></p>
+              <p><em>Music credits are listed inside the 📻 Retro Boombox player (Author field).<br>All tracks used with
+                  permission or under free / CC licenses.</em></p>
             </div>
           </div>
 
           <!-- Made with love footer -->
           <div class="credits-footer-note">
             <p>✨ Built from scratch with 💜 by <strong>Andile Makuyana (Skyfall)</strong></p>
-            <p class="credits-sub">No game engines. No UI frameworks. Just vanilla HTML5 Canvas, CSS, and ES6 JavaScript.</p>
+            <p class="credits-sub">No game engines. No UI frameworks. Just vanilla HTML5 Canvas, CSS, and ES6
+              JavaScript.</p>
           </div>
         </div>
 
@@ -353,4 +371,5 @@
 
   <script type="module" src="src/main.js"></script>
 </body>
+
 </html>
