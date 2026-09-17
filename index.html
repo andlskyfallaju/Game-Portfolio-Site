@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Room Portfolio // Interactive 2D Game</title>
+  <meta name="description" content="An interactive 2D pixel art portfolio game. Navigate a developer's room with WASD and click on bookshelf books to explore GitHub projects and code repositories.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Backdrop Glow -->
+  <div class="background-ambient"></div>
+
+  <div class="site-wrapper">
+    <!-- Top Retro Header Bar -->
+    <header class="retro-header">
+      <div class="header-branding">
+        <span class="pulse-indicator"></span>
+        <h1 class="logo-title">PIXEL ROOM <span class="logo-badge">PORTFOLIO v1.0</span></h1>
+      </div>
+
+      <!-- Quick Control Bar -->
+      <nav class="quick-controls" aria-label="Game Controls">
+        <!-- Character Skin Selector -->
+        <div class="control-group">
+          <label for="skin-selector" class="control-label">HERO:</label>
+          <select id="skin-selector" class="retro-select" title="Choose character appearance">
+            <option value="0">Red Mage</option>
+            <option value="1">Green Archer</option>
+            <option value="2">Blue Bard</option>
+            <option value="3">Violet Scout</option>
+            <option value="4">Orange Knight</option>
+            <option value="5">Cyan Conjurer</option>
+            <option value="6">Golden Devout</option>
+            <option value="7">Pink Rogue</option>
+            <option value="8">Dark Wanderer</option>
+            <option value="9">Silver Paladin</option>
+          </select>
+        </div>
+
+        <button id="toggle-night-btn" class="retro-btn" title="Toggle Day / Night ambient lighting">☀️ Day</button>
+        <button id="toggle-crt-btn" class="retro-btn active" title="Toggle retro CRT scanlines effect">📺 CRT</button>
+        <button id="toggle-sound-btn" class="retro-btn active" title="Toggle 8-bit sound effects">🔊 Sound</button>
+        <button id="toggle-music-btn" class="retro-btn active" title="Toggle cozy 8-bit background music">🎵 Music On</button>
+        <button id="toggle-fullscreen-btn" class="retro-btn" title="Toggle Fullscreen">⛶ Fullscreen</button>
+        <button id="toggle-help-btn" class="retro-btn btn-highlight" title="Controls and guide">❓ Help</button>
+      </nav>
+    </header>
+
+    <!-- Main Arcade Cabinet / Game Stage -->
+    <main class="game-stage">
+      <div id="game-cabinet" class="game-cabinet">
+        <!-- Canvas Container with Pixel Scaling -->
+        <div class="canvas-wrapper">
+          <canvas id="game-canvas" width="192" height="160"></canvas>
+
+          <!-- Retro CRT Scanline Shader Overlay -->
+          <div id="scanline-overlay" class="scanline-overlay"></div>
+
+          <!-- Loading Screen Overlay -->
+          <div id="loading-screen" class="loading-overlay">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">LOADING 16-BIT ASSETS...</p>
+          </div>
+
+          <!-- In-Game Dynamic Object Hover Tooltip -->
+          <div id="hud-tooltip" class="hud-tooltip">
+            <div class="hud-tooltip-inner">
+              <span class="hud-cursor-icon">👉</span>
+              <div id="hud-object-prompt" class="hud-prompt-content">
+                <span class="hud-item-name">Hovering...</span>
+                <span class="hud-item-action">Click to interact</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cabinet Status Bezel Footer -->
+        <div class="cabinet-footer">
+          <div class="controls-hint">
+            <span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span>
+            <span class="hint-text">WALK</span>
+            <span class="separator">•</span>
+            <span class="mouse-badge">🖱️ MOUSE</span>
+            <span class="hint-text">CLICK FURNITURE & BOOKS</span>
+          </div>
+          <div class="room-stats">
+            <span class="stat-dot"></span>
+            <span>INTERACTIVE DEV ROOM • 8 PROJECTS ON SHELF</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODALS CONTAINER -->
+  <div id="modal-overlay" class="modal-overlay hidden" aria-modal="true" role="dialog">
+    <!-- 1. PROJECT DOSSIER MODAL (Bookshelf Inspection) -->
+    <article id="project-modal" class="retro-modal project-modal hidden">
+      <div class="modal-frame">
+        <header class="modal-header">
+          <div class="modal-title-group">
+            <div id="proj-spine-icon" class="modal-spine-dot"></div>
+            <div>
+              <span id="proj-shelf-badge" class="shelf-breadcrumb">Top Shelf • Book 1/8</span>
+              <h2 id="proj-title" class="modal-title">Project Title</h2>
+            </div>
+          </div>
+          <button class="modal-close-btn" aria-label="Close modal" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+        </header>
+
+        <!-- Shelf Visual Spine Selector -->
+        <div class="shelf-preview-bar">
+          <span class="shelf-bar-label">BOOKSHELF RACK:</span>
+          <div id="modal-shelf-rack" class="modal-shelf-rack">
+            <!-- Rendered dynamically -->
+          </div>
+          <span class="shelf-bar-sublabel">(Click any book to switch)</span>
+        </div>
+
+        <div class="modal-body project-body">
+          <div class="project-meta-row">
+            <div class="meta-item">
+              <span class="meta-label">CATEGORY:</span>
+              <span id="proj-category" class="meta-val meta-highlight">Game Development</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">YEAR:</span>
+              <span id="proj-year" class="meta-val">2025</span>
+            </div>
+            <div class="meta-item full-width">
+              <span class="meta-label">TAGS:</span>
+              <div id="proj-tags" class="tags-container"></div>
+            </div>
+          </div>
+
+          <div class="project-content-section">
+            <h3 id="proj-subtitle" class="project-subtitle">Project Subtitle</h3>
+            <p id="proj-desc" class="project-description">Project full description here...</p>
+
+            <h4 class="highlights-heading">KEY ARCHITECTURAL HIGHLIGHTS</h4>
+            <ul id="proj-highlights" class="highlights-list"></ul>
+          </div>
+        </div>
+
+        <footer class="modal-footer project-footer">
+          <div class="flipper-controls">
+            <button id="proj-prev-btn" class="modal-btn btn-secondary">◀ Prev Book</button>
+            <button id="proj-next-btn" class="modal-btn btn-secondary">Next Book ▶</button>
+          </div>
+          <div class="action-links">
+            <a id="proj-github-link" href="#" target="_blank" rel="noopener noreferrer" class="modal-btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+            <a id="proj-demo-link" href="#" target="_blank" rel="noopener noreferrer" class="modal-btn btn-accent">
+              🚀 Live Demo
+            </a>
+          </div>
+        </footer>
+      </div>
+    </article>
+
+    <!-- 2. PC BATTLESTATION TERMINAL MODAL -->
+    <article id="terminal-modal" class="retro-modal terminal-modal hidden">
+      <div class="modal-frame term-frame">
+        <header class="modal-header term-header">
+          <div class="term-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <h2 class="modal-title term-title">terminal@battlestation:~</h2>
+          <button class="modal-close-btn" aria-label="Close terminal" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+        </header>
+
+        <div id="term-body" class="modal-body term-body">
+          <div id="term-logs" class="term-logs"></div>
+        </div>
+
+        <footer class="modal-footer term-footer">
+          <div class="term-input-row">
+            <span class="term-prompt-sym">&gt;</span>
+            <input id="term-cli-input" type="text" placeholder="type 'help', 'skills', 'projects', 'github'..." autocomplete="off" spellcheck="false">
+          </div>
+        </footer>
+      </div>
+    </article>
+
+    <!-- 3. GENERIC INTERACTION MODAL (Bed, Plant, Lamp, Artwork) -->
+    <article id="generic-modal" class="retro-modal generic-modal hidden">
+      <div class="modal-frame">
+        <header class="modal-header">
+          <div class="modal-title-group">
+            <span id="generic-modal-icon" class="dialog-icon">💡</span>
+            <h2 id="generic-modal-title" class="modal-title">Interaction</h2>
+          </div>
+          <button class="modal-close-btn" aria-label="Close dialog" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+        </header>
+
+        <div class="modal-body generic-body">
+          <div id="generic-modal-message" class="generic-message"></div>
+          <div id="generic-modal-actions" class="generic-actions"></div>
+        </div>
+
+        <footer class="modal-footer generic-footer">
+          <button class="modal-btn btn-primary modal-close-btn">[E] Close</button>
+        </footer>
+      </div>
+    </article>
+
+    <!-- 4. RETRO BOOMBOX MUSIC PLAYER MODAL -->
+    <article id="music-modal" class="retro-modal music-modal hidden">
+      <div class="modal-frame">
+        <header class="modal-header">
+          <div class="modal-title-group">
+            <span class="dialog-icon">📻</span>
+            <div>
+              <span class="shelf-breadcrumb">RETRO BOOMBOX STEREO • SOUNDTRACK</span>
+              <h2 class="modal-title">Room Jukebox & Music Tracks</h2>
+            </div>
+          </div>
+          <button class="modal-close-btn" aria-label="Close music player" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+        </header>
+
+        <div class="modal-body music-body">
+          <!-- Cassette Tape Animated Graphic -->
+          <div class="cassette-deck">
+            <div class="cassette-label-band">
+              <span class="cassette-brand">MIXTAPE 90s</span>
+              <span id="cassette-track-title" class="cassette-title">8-Bit Cozy Beats</span>
+              <span class="cassette-side">SIDE A • STEREO</span>
+            </div>
+            <div class="cassette-reels">
+              <div id="cassette-spool-left" class="cassette-spool spinning">
+                <div class="spool-center"></div>
+              </div>
+              <div class="cassette-window">
+                <div class="tape-tape"></div>
+              </div>
+              <div id="cassette-spool-right" class="cassette-spool spinning">
+                <div class="spool-center"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Now Playing Status -->
+          <div class="now-playing-bar">
+            <div class="now-playing-status">
+              <span id="music-indicator" class="pulse-dot"></span>
+              <span id="music-playing-name">NOW PLAYING: 8-Bit Cozy Beats</span>
+            </div>
+            <div class="music-quick-controls">
+              <button id="music-play-pause-btn" class="modal-btn btn-secondary">⏸ Pause</button>
+            </div>
+          </div>
+
+          <!-- Tracks List -->
+          <div class="music-tracklist-section">
+            <h3 class="tracklist-heading">SELECT A TRACK:</h3>
+            <div id="music-tracks-list" class="music-tracks-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Local MP3 Loader (Disabled for security)
+          <div class="music-upload-box">
+            <div class="upload-info">
+              <span class="upload-icon">🎵</span>
+              <div>
+                <strong>Add Your Own MP3 Tracks:</strong>
+                <p>Drop your <code>.mp3</code> files into <code>assets/music/</code> (e.g. <code>track1.mp3</code>), or select any local MP3 directly now:</p>
+              </div>
+            </div>
+            <label class="modal-btn btn-primary file-upload-label">
+              📁 Choose Local MP3 File
+              <input type="file" id="local-mp3-input" accept="audio/mp3,audio/*" style="display: none;">
+            </label>
+          </div>
+          -->
+        </div>
+
+        <footer class="modal-footer music-footer">
+          <div class="music-status-note">
+            <span>💡 Tip: You can toggle music anytime with the header button or press [E] to exit.</span>
+          </div>
+          <button class="modal-btn btn-secondary modal-close-btn">[E] Done</button>
+        </footer>
+      </div>
+    </article>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
