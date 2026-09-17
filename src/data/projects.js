@@ -200,31 +200,32 @@ export const CREDITS = {
     {
       category: "🏠 Room & Furniture Tileset",
       name: "Pocket RPG Indoors Asset Pack",
-      author: "Kenney (kenney.nl)",
+      author: "Vryell (itch.io)",
       license: "CC0 1.0 Universal — Public Domain",
-      url: "https://kenney.nl/assets/pocket-rpg-indoors",
+      url: "https://vryell.itch.io/pocket-rpg-indoors",
       usage: "Room base tileset, furniture, sofa, bed, bookshelf, desk, stereo boombox sprite"
     },
     {
       category: "👾 Character Sprites",
       name: "16×16 RPG Character Sprites",
-      author: "0x72 (Robert Norenberg)",
+      author: "Route1Rodent (itch.io)",
       license: "CC0 1.0 Universal — Public Domain",
-      url: "https://0x72.itch.io/16x16-RPG-Characters",
+      url: "https://route1rodent.itch.io/16x16-rpg-character-sprite-sheet",
       usage: "Player character walk cycles (4-directional animation)"
     },
     {
       category: "🎱 Billiards / Pool Table",
       name: "8-Ball Asset Pack",
-      author: "GrumpyDiamond",
+      author: "Hamuko27 (itch.io)",
       license: "Free to use (itch.io)",
-      url: "https://grumpydiamond.itch.io/8-ball-asset-pack",
+      url: "https://hamuko27.itch.io/8-ball-asset-pack-free",
       usage: "Billiards table, cue stick, ball textures, and felt felt layout"
     }
   ],
   engine: {
     name: "Custom Vanilla JS 2D Game Engine",
     author: "Andile Makuyana (@andlskyfallaju)",
+    url: "https://github.com/andlskyfallaju/Game-Portfolio-Site",
     description: "100% hand-rolled: canvas rendering, WASD movement, collision, Web Audio API chiptune synth, particle systems, interactive furniture, billiards physics simulation, ID3 tag parser, and modal UI — zero external libraries."
   },
   note: "Music credits — to be added manually by the developer."

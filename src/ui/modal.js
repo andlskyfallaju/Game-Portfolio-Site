@@ -498,7 +498,11 @@ export class UIManager {
     const engAuthor = document.getElementById("credits-engine-author");
     const engDesc = document.getElementById("credits-engine-desc");
     if (engName && CREDITS.engine) {
-      engName.textContent = CREDITS.engine.name;
+      if (CREDITS.engine.url) {
+        engName.innerHTML = `<a href="${CREDITS.engine.url}" target="_blank" rel="noopener noreferrer" class="credits-link">${CREDITS.engine.name} ↗</a>`;
+      } else {
+        engName.textContent = CREDITS.engine.name;
+      }
       engAuthor.textContent = `By: ${CREDITS.engine.author}`;
       engDesc.textContent = CREDITS.engine.description;
     }
