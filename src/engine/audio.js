@@ -24,8 +24,8 @@ class SoundSystem {
     // Default to track1.mp3 as the startup soundtrack
     this.currentTrack = {
       id: "custom_track_1",
-      title: "Git City - Your GitHub as a 3D City",
-      author: "Samuel Rizzon",
+      title: "Study Lofi Music",
+      author: "SolarFLEX",
       src: "./assets/music/track1.mp3",
       type: "mp3",
       badge: "MP3 Track"
@@ -63,7 +63,7 @@ class SoundSystem {
       try {
         this.audioElement.pause();
         this.audioElement.currentTime = 0;
-      } catch (e) {}
+      } catch (e) { }
 
       if (this.musicEnabled && !this.muted) {
         this.startBGM();
@@ -270,7 +270,7 @@ class SoundSystem {
         mOsc.start(time);
         mOsc.stop(time + dur * 1.9);
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playStep() {
@@ -321,7 +321,7 @@ class SoundSystem {
 
       osc.start();
       osc.stop(this.ctx.currentTime + 0.08);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playBookOpen() {
@@ -346,7 +346,7 @@ class SoundSystem {
         osc.start(this.ctx.currentTime + idx * 0.04);
         osc.stop(this.ctx.currentTime + idx * 0.04 + 0.15);
       });
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playBoot() {
@@ -372,7 +372,7 @@ class SoundSystem {
         osc.start(this.ctx.currentTime + i * 0.07);
         osc.stop(this.ctx.currentTime + i * 0.07 + 0.22);
       });
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playPower() {
@@ -395,7 +395,7 @@ class SoundSystem {
 
       osc.start();
       osc.stop(this.ctx.currentTime + 0.08);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playWater() {
@@ -420,7 +420,7 @@ class SoundSystem {
         osc.start(this.ctx.currentTime + i * 0.05);
         osc.stop(this.ctx.currentTime + i * 0.05 + 0.1);
       });
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playSleep() {
@@ -445,7 +445,7 @@ class SoundSystem {
         osc.start(this.ctx.currentTime + i * 0.09);
         osc.stop(this.ctx.currentTime + i * 0.09 + 0.26);
       });
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playBallHit() {
@@ -468,7 +468,7 @@ class SoundSystem {
 
       osc.start(this.ctx.currentTime);
       osc.stop(this.ctx.currentTime + 0.06);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playBallPocket() {
@@ -491,7 +491,7 @@ class SoundSystem {
 
       osc.start(this.ctx.currentTime);
       osc.stop(this.ctx.currentTime + 0.14);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playVictory() {
@@ -516,7 +516,7 @@ class SoundSystem {
         osc.start(this.ctx.currentTime + i * 0.1);
         osc.stop(this.ctx.currentTime + i * 0.1 + 0.24);
       });
-    } catch (e) {}
+    } catch (e) { }
   }
 
   playScratch() {
@@ -539,7 +539,7 @@ class SoundSystem {
 
       osc.start(this.ctx.currentTime);
       osc.stop(this.ctx.currentTime + 0.38);
-    } catch (e) {}
+    } catch (e) { }
   }
 }
 
