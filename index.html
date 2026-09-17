@@ -89,7 +89,7 @@
           </div>
           <div class="room-stats">
             <span class="stat-dot"></span>
-            <span>INTERACTIVE DEV ROOM • 8 PROJECTS ON SHELF</span>
+            <span>INTERACTIVE DEV ROOM • 8 PROJECTS + CREDITS ON SHELF</span>
           </div>
         </div>
       </div>
@@ -288,6 +288,63 @@
             <span>💡 Tip: You can toggle music anytime with the header button or press [E] to exit.</span>
           </div>
           <button class="modal-btn btn-secondary modal-close-btn">[E] Done</button>
+        </footer>
+      </div>
+    </article>
+
+    <!-- 5. CREDITS & ATTRIBUTIONS MODAL -->
+    <article id="credits-modal" class="retro-modal credits-modal hidden">
+      <div class="modal-frame">
+        <header class="modal-header">
+          <div class="modal-title-group">
+            <span class="dialog-icon">📜</span>
+            <div>
+              <span class="shelf-breadcrumb">PIXEL ROOM PORTFOLIO • OPEN SOURCE CREDITS</span>
+              <h2 class="modal-title">Credits & Attributions</h2>
+            </div>
+          </div>
+          <button class="modal-close-btn" aria-label="Close credits" title="Press [E] or [Esc] to exit"><span class="key-hint">[E]</span>&times;</button>
+        </header>
+
+        <div class="modal-body credits-body">
+          <!-- Sprite Credits -->
+          <div class="credits-section">
+            <h3 class="credits-heading">🎨 Sprite & Visual Assets</h3>
+            <div id="credits-sprites-list" class="credits-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Engine Credit -->
+          <div class="credits-section">
+            <h3 class="credits-heading">⚙️ Game Engine</h3>
+            <div class="credits-card credits-engine-card">
+              <div class="credits-card-header">
+                <span class="credits-cat-badge">Custom Build</span>
+                <strong id="credits-engine-name" class="credits-name"></strong>
+              </div>
+              <p id="credits-engine-author" class="credits-author"></p>
+              <p id="credits-engine-desc" class="credits-desc"></p>
+            </div>
+          </div>
+
+          <!-- Music Credits placeholder -->
+          <div class="credits-section">
+            <h3 class="credits-heading">🎵 Music</h3>
+            <div class="credits-card credits-music-note">
+              <p><em>Music credits are listed inside the 📻 Retro Boombox player (Author field).<br>All tracks used with permission or under free / CC licenses.</em></p>
+            </div>
+          </div>
+
+          <!-- Made with love footer -->
+          <div class="credits-footer-note">
+            <p>✨ Built from scratch with 💜 by <strong>Andile Makuyana (Skyfall)</strong></p>
+            <p class="credits-sub">No game engines. No UI frameworks. Just vanilla HTML5 Canvas, CSS, and ES6 JavaScript.</p>
+          </div>
+        </div>
+
+        <footer class="modal-footer credits-footer">
+          <button class="modal-btn btn-secondary modal-close-btn">[E] Close</button>
         </footer>
       </div>
     </article>

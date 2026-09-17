@@ -5,6 +5,7 @@
  */
 
 import { PROJECTS } from "../data/projects.js";
+import { CREDITS } from "../data/projects.js";
 import { sounds } from "../engine/audio.js";
 
 export class InteractableManager {
@@ -62,6 +63,20 @@ export class InteractableManager {
         color: proj.spineColor
       });
     }
+
+    // Right bookshelf — Top row, slot 1: Credits book (special gold book)
+    bookHitboxes.push({
+      type: "credits",
+      id: "credits_book",
+      credits: CREDITS,
+      name: "📜 Credits & Attributions",
+      prompt: "Click to view asset credits",
+      x: 147,
+      y: 31,
+      w: 6,
+      h: 5.5,
+      color: "#fbbf24" // Gold
+    });
 
     return bookHitboxes;
   }
@@ -289,14 +304,15 @@ export class InteractableManager {
       const item = this.hoveredItem;
       const pulse = (Math.sin(performance.now() * 0.008) + 1) * 0.5;
 
-      if (item.type === "book") {
-        // Highlight individual book spine
+      if (item.type === "book" || item.type === "credits") {
+        // Highlight individual book spine (projects + credits book)
+        const glowColor = item.type === "credits" ? "#fbbf24" : (item.color || "#fff");
         ctx.strokeStyle = `rgba(255, 255, 255, ${0.7 + pulse * 0.3})`;
         ctx.lineWidth = 1;
         ctx.strokeRect(Math.floor(item.x) - 0.5, Math.floor(item.y) - 0.5, item.w + 1, item.h + 1);
 
         // Little floating glow marker above book
-        ctx.fillStyle = item.color || "#fff";
+        ctx.fillStyle = glowColor;
         ctx.fillRect(Math.round(item.x + item.w / 2) - 1, Math.round(item.y - 2), 2, 2);
       } else {
         // Highlight furniture bounding box

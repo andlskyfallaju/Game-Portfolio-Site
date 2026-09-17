@@ -4,6 +4,7 @@
  */
 
 import { PROJECTS, DEVELOPER_INFO } from "../data/projects.js";
+import { CREDITS } from "../data/projects.js";
 import { MUSIC_TRACKS } from "../data/music.js";
 import { sounds } from "../engine/audio.js";
 import { enrichTrackMetadata } from "../engine/id3.js";
@@ -16,6 +17,7 @@ export class UIManager {
     this.terminalModal = document.getElementById("terminal-modal");
     this.genericModal = document.getElementById("generic-modal");
     this.musicModal = document.getElementById("music-modal");
+    this.creditsModal = document.getElementById("credits-modal");
     this.hudTooltip = document.getElementById("hud-tooltip");
     this.hudObjectPrompt = document.getElementById("hud-object-prompt");
 
@@ -219,6 +221,7 @@ export class UIManager {
         <p>  <span class="term-yellow">skills</span>    - View technical skill set</p>
         <p>  <span class="term-yellow">github</span>    - Open GitHub profile</p>
         <p>  <span class="term-yellow">contact</span>   - Contact email info</p>
+        <p>  <span class="term-yellow">/credits</span>  - View asset & sprite credits</p>
         <p>  <span class="term-yellow">clear</span>     - Clear terminal buffer</p>
       `;
     } else if (lower === "projects") {
@@ -236,6 +239,13 @@ export class UIManager {
       resp.innerHTML = `<p>Email: <a href="mailto:${DEVELOPER_INFO.email}" class="term-link">${DEVELOPER_INFO.email}</a></p>`;
     } else if (lower === "clear") {
       termLogs.innerHTML = "";
+      return;
+    } else if (lower === "/credits" || lower === "credits") {
+      termLogs.appendChild(resp);
+      const scrollContainer = document.getElementById("term-body");
+      if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      this.closeAllModals();
+      this.showCredits();
       return;
     } else if (lower !== "") {
       resp.innerHTML = `<p class="term-red">Command not recognized: '${cmd}'. Type 'help' for options.</p>`;
@@ -450,10 +460,54 @@ export class UIManager {
     if (this.musicModal) {
       this.musicModal.classList.add("hidden");
     }
+    if (this.creditsModal) {
+      this.creditsModal.classList.add("hidden");
+    }
     if (this.closeListeners) {
       for (const cb of this.closeListeners) {
         cb();
       }
     }
+  }
+
+  showCredits() {
+    sounds.playBookOpen();
+
+    // Populate sprite credits
+    const spriteList = document.getElementById("credits-sprites-list");
+    if (spriteList && CREDITS.sprites) {
+      spriteList.innerHTML = "";
+      CREDITS.sprites.forEach(credit => {
+        const card = document.createElement("div");
+        card.className = "credits-card";
+        card.innerHTML = `
+          <div class="credits-card-header">
+            <span class="credits-cat-badge">${credit.category}</span>
+            <a href="${credit.url}" target="_blank" rel="noopener noreferrer" class="credits-name credits-link">${credit.name} ↗</a>
+          </div>
+          <p class="credits-author">By: <strong>${credit.author}</strong></p>
+          <p class="credits-license">License: <span class="credits-license-badge">${credit.license}</span></p>
+          <p class="credits-desc">${credit.usage}</p>
+        `;
+        spriteList.appendChild(card);
+      });
+    }
+
+    // Populate engine credits
+    const engName = document.getElementById("credits-engine-name");
+    const engAuthor = document.getElementById("credits-engine-author");
+    const engDesc = document.getElementById("credits-engine-desc");
+    if (engName && CREDITS.engine) {
+      engName.textContent = CREDITS.engine.name;
+      engAuthor.textContent = `By: ${CREDITS.engine.author}`;
+      engDesc.textContent = CREDITS.engine.description;
+    }
+
+    this.modalOverlay.classList.remove("hidden");
+    this.creditsModal.classList.remove("hidden");
+    this.projectModal.classList.add("hidden");
+    this.terminalModal.classList.add("hidden");
+    this.genericModal.classList.add("hidden");
+    if (this.musicModal) this.musicModal.classList.add("hidden");
   }
 }

@@ -10,7 +10,7 @@ import { Room } from "./entities/room.js";
 import { InteractableManager } from "./entities/interactables.js";
 import { BilliardsSimulation } from "./entities/billiards.js";
 import { UIManager } from "./ui/modal.js";
-import { PROJECTS, DEVELOPER_INFO } from "./data/projects.js";
+import { PROJECTS, DEVELOPER_INFO, CREDITS } from "./data/projects.js";
 
 class Game {
   constructor() {
@@ -202,6 +202,9 @@ class Game {
     if (item.type === "book") {
       // Direct book click: open project dossier!
       this.ui.showProject(item.project);
+    } else if (item.type === "credits") {
+      // Credits book click: open credits modal!
+      this.ui.showCredits();
     } else if (item.id === "bookshelf_general") {
       // Clicked bookshelf background: open library with first project
       this.ui.showProject(PROJECTS[0]);
