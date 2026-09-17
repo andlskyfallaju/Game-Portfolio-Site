@@ -124,7 +124,8 @@ class Game {
     const startAudioOnGesture = () => {
       sounds.init();
       if (sounds.musicEnabled && !sounds.muted) {
-        sounds.startBGM();
+        // Play track1.mp3 as the default soundtrack on startup
+        sounds.playCurrentTrack();
       }
       updateMusicIcon();
       window.removeEventListener("keydown", startAudioOnGesture);

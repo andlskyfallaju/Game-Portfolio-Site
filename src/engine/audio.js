@@ -21,11 +21,18 @@ class SoundSystem {
     this.audioElement = new Audio();
     this.audioElement.loop = true;
     this.audioElement.volume = 0.55;
+    // Default to track1.mp3 as the startup soundtrack
     this.currentTrack = {
-      id: "default_chiptune",
-      title: "8-Bit Cozy Beats (Procedural Synth)",
-      type: "synth"
+      id: "custom_track_1",
+      title: "Git City - Your GitHub as a 3D City",
+      author: "Samuel Rizzon",
+      src: "./assets/music/track1.mp3",
+      type: "mp3",
+      badge: "MP3 Track"
     };
+    // Pre-load track1 into the audio element immediately
+    this.audioElement.src = this.currentTrack.src;
+    this.audioElement.load();
 
     this.onTrackChange = null;
     this.onPlaybackError = null;
