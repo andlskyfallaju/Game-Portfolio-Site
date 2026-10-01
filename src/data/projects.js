@@ -179,7 +179,7 @@ export const DEVELOPER_INFO = {
   name: "Andile Makuyana (Skyfall)",
   handle: "@andlskyfallaju",
   githubUrl: "https://github.com/andlskyfallaju",
-  email: "andile@skyfall.dev",
+  email: "andimakuyana@gmail.com",
   status: "🟢 Active • Building systems, graphics & AI",
   bio: "BSc Hons ICT (Software Engineering) student at Arrupe Jesuit University. Passionate about software rendering, AVX SIMD, from-scratch transformer LLMs, game development, and high-performance cross-platform apps.",
   skills: [
