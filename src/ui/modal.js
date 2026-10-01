@@ -193,7 +193,7 @@ export class UIManager {
         <div class="term-quick-links">
           <a href="${DEVELOPER_INFO.githubUrl}" target="_blank" class="term-btn">🐙 GitHub Profile</a>
           <a href="mailto:${DEVELOPER_INFO.email}" class="term-btn">✉️ Contact Email</a>
-          <a href="${DEVELOPER_INFO.linkedin}" class="term-btn">🔗 LinkedIn Profile</a>
+          <a href="${DEVELOPER_INFO.linkedin}" target="_blank" class="term-btn">🔗 LinkedIn Profile</a>
         </div>
       `;
     }

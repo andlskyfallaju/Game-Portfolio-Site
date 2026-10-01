@@ -300,7 +300,7 @@ class Game {
           <div class="contact-links-grid">
             <a href="${DEVELOPER_INFO.githubUrl}" target="_blank" class="modal-btn btn-primary">🐙 GitHub Profile</a>
             <a href="mailto:${DEVELOPER_INFO.email}" class="modal-btn btn-secondary">✉️ Send Email</a>
-            <a href="${DEVELOPER_INFO.linkedin}" class="modal-btn btn-secondary">🔗 LinkedIn Profile</a>
+            <a href="${DEVELOPER_INFO.linkedin}" target="_blank" class="modal-btn btn-secondary">🔗 LinkedIn Profile</a>
           </div>
         `
       );
