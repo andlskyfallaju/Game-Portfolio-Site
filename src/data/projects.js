@@ -180,6 +180,7 @@ export const DEVELOPER_INFO = {
   handle: "@andlskyfallaju",
   githubUrl: "https://github.com/andlskyfallaju",
   email: "andimakuyana@gmail.com",
+  linkdin: "https://www.linkedin.com/in/andile-makuyana-passionatewebdev",
   status: "🟢 Active • Building systems, graphics & AI",
   bio: "BSc Hons ICT (Software Engineering) student at Arrupe Jesuit University. Passionate about software rendering, AVX SIMD, from-scratch transformer LLMs, game development, and high-performance cross-platform apps.",
   skills: [
